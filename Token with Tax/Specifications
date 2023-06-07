@@ -1,0 +1,41 @@
+Sure! Here's a summary of each functionality in the provided contract:
+
+DellasInu contract inherits from ERC20 and Ownable: The contract extends the ERC20 contract to create a custom token with the name "Dellas Inu" and symbol "DELLINU". It also inherits from the Ownable contract, which provides a basic access control mechanism.
+
+uniswapV2Router: This variable of type IUniswapV2Router02 represents the instance of the Uniswap V2 Router contract. It is used for swapping tokens for ETH.
+
+swapping: This boolean variable is used to track if a swap is currently in progress. It prevents reentrant calls to the swapping functionality.
+
+devWallet: This variable holds the address of the developer's wallet, where ETH received from token swaps will be sent.
+
+taxFee and burnFee: These variables represent the tax and burn fees, respectively, as percentages. For example, if taxFee is set to 5, it means there is a 5% tax on each transfer.
+
+swapTokensAtAmount: This variable defines the minimum token balance required in the contract to trigger a swap for ETH.
+
+maxTransfer: This variable sets the maximum transfer limit for each transaction.
+
+_isExcludedFromFees: This mapping tracks the accounts that are excluded from paying fees or having a maximum transaction amount.
+
+SwapAndLiquify and ExcludeFromFees events: These events are emitted during certain contract operations to provide visibility to external listeners.
+
+receive() function: This fallback function allows the contract to receive ETH.
+
+setUniswapV2Router(), excludeFromFees(), excludeMultipleAccountsFromFees(), setDevWallet(), setSwapAtAmount(), setTaxFee(), setBurnFee(), and setMaxTransfer(): These functions are used to set various parameters and configurations of the contract. They are accessible only by the contract owner.
+
+isExcludedFromFees(): This function checks whether an account is excluded from paying fees.
+
+_transfer() function: This internal function is responsible for handling token transfers. It includes logic for swapping tokens for ETH based on certain conditions, such as reaching the minimum token balance required for a swap and not being in the process of swapping. It also handles the application of fees and the transfer of tokens.
+
+renounceOwnership(): This function overrides the renounceOwnership() function from the Ownable contract to prevent the contract owner from transferring ownership.
+
+swapAndSendToFee() function: This private function is used to swap tokens for ETH and send the ETH to the developer's wallet. It calculates the amount of ETH received from the swap.
+
+swapTokensForETH() function: This private function is responsible for executing the token swap for ETH using the Uniswap V2 Router contract. It specifies the path for the swap and approves the router to spend the token amount.
+
+Note:
+
+The addresses that are isExcludedFromFees are also excluded from swapping Fee tokens.
+
+
+
+
