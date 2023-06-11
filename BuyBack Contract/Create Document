@@ -1,0 +1,29 @@
+This is a Solidity smart contract called "TokenBuyback" that facilitates the buyback of tokens using Ether (ETH) and distributes the ETH to two specified wallets.
+
+Here are the key features of the contract:
+
+1. The contract is based on the ERC20 standard and inherits the "Ownable" contract from OpenZeppelin.
+
+2. The contract uses the Uniswap decentralized exchange's router interface to swap ETH for tokens.
+
+3. The contract has two main wallets (wallet1 and wallet2) where the distributed ETH is sent. The distribution percentages for each wallet can be set by the contract owner.
+
+4. The buybackPercentage variable determines the percentage of ETH sent to the contract that will be used to buy back tokens.
+
+5. The tokenContractAddress variable represents the address of the token contract that will be bought back.
+
+6. The contract receives ETH through the `receive()` function. When ETH is received, it triggers two internal functions: `buyTokens()` and `distributeEth()`.
+
+7. The `buyTokens()` function swaps a portion of the received ETH for tokens using the Uniswap router. The tokens are sent to a burn address (0x000000000000000000000000000000000000dEaD).
+
+8. The `distributeEth()` function splits the remaining ETH after the buyback between wallet1 and wallet2 according to the set distribution percentages.
+
+9. The contract owner can update the wallet addresses, buyback percentage, distribution percentages, token contract address, and Uniswap router address through various setter functions.
+
+10. The contract owner can also withdraw any ERC20 tokens held by the contract using the `withdrawToken()` function, and withdraw the remaining ETH balance using the `withdrawETH()` function.
+
+11. The `getBalance()` function returns the current ETH balance of the contract, and the `getTokenBalance()` function returns the token balance for a given token address held by the contract.
+
+12. The contract emits events (`TokensBoughtBack` and `EthDistributed`) to provide information about token buybacks and ETH distribution.
+
+
